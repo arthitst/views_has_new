@@ -28,25 +28,39 @@ class views_has_new_handler_field extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
 
-    $options['custom_date_limit'] = array('default' => '');
+    $options['custom_date_limit_new'] = array('default' => '');
+    $options['custom_date_limit_update'] = array('default' => '');
 
     return $options;
   }
 
    function options_form(&$form, &$form_state) {
-    
-    $form['custom_date_limit'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Custom date limit'),
-      '#description' => t('Put day limit'),
-      '#default_value' => isset($this->options['custom_date_limit']) ? $this->options['custom_date_limit'] : '',
+    $form['has'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Settings'),
+      '#collapsible' => FALSE,
     );
+
+    $form['has']['custom_date_limit_new'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Days (new)'),
+      '#description' => t('Show each day.'),
+      '#default_value' => isset($this->options['custom_date_limit_new']) ? $this->options['custom_date_limit_new'] : '',
+    );
+    $form['has']['custom_date_limit_update'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Days (update)'),
+      '#description' => t('Show each day.'),
+      '#default_value' => isset($this->options['custom_date_limit_update']) ? $this->options['custom_date_limit_update'] : '',
+    );
+
 
      parent::options_form($form, $form_state);
    }
 
    function render($values) {
-    $custom_format = $this->options['custom_date_limit'];
+    $custom_format_new = $this->options['custom_date_limit_new'];
+    $custom_format_update = $this->options['custom_date_limit_update'];
      // Render your content.
     $node = new stdClass;
     $node->nid = $values->{$this->aliases['nid']};
@@ -65,7 +79,7 @@ class views_has_new_handler_field extends views_handler_field {
 
       $days = floor($diff / (60*60*24));
 
-       if($days <= $custom_format){
+       if($days <= $custom_format_new){
           return '<span class="marker">new</span>';
        }
     }elseif($node->created != $node->changed){
@@ -75,16 +89,10 @@ class views_has_new_handler_field extends views_handler_field {
 
       $days = floor($diff / (60*60*24));
 
-       if($days <= $custom_format){
+       if($days <= $custom_format_update){
           return '<span class="marker">update</span>';
        }
 
     }
-
-
-   
-
-    
-     // return views_date_thai_get_formatted_date($node->created,$custom_format);
   }
 }
