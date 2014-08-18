@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Easy Social Views hooks.
+ */
+
+/**
+ * Implements hook_views_data().
+ */
+function views_has_new_views_data() {
+  $data['node']['views_has_new'] = array(
+    'field' => array(
+      'title' => t('Node has new and update'),
+      'help' => t('Display Node new/update.'),
+      'handler' => 'views_has_new_handler_field',
+    ),
+  );
+  return $data;
+}
+

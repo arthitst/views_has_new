@@ -1,0 +1,9 @@
+name = Views Has New
+description = Views Has New and Update.
+package = Hugsolution
+core = 7.x
+; Views handler
+files[] = views/views_has_new_handler_field.inc
+; Information added by Drupal.org packaging script on 2014-02-12
+version = "7.x-1.0"
+core = "7.x"
