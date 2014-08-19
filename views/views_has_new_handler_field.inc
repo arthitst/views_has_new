@@ -35,19 +35,14 @@ class views_has_new_handler_field extends views_handler_field {
   }
 
    function options_form(&$form, &$form_state) {
-    $form['has'] = array(
-      '#type' => 'fieldset',
-      '#title' => t('Settings'),
-      '#collapsible' => FALSE,
-    );
 
-    $form['has']['custom_date_limit_new'] = array(
+    $form['custom_date_limit_new'] = array(
       '#type' => 'textfield',
       '#title' => t('Days (new)'),
       '#description' => t('Show each day.'),
       '#default_value' => isset($this->options['custom_date_limit_new']) ? $this->options['custom_date_limit_new'] : '',
     );
-    $form['has']['custom_date_limit_update'] = array(
+    $form['custom_date_limit_update'] = array(
       '#type' => 'textfield',
       '#title' => t('Days (update)'),
       '#description' => t('Show each day.'),
