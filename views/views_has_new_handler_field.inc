@@ -73,7 +73,7 @@ class views_has_new_handler_field extends views_handler_field {
       $diff = abs($node_now - $now);
 
       $days = floor($diff / (60*60*24));
-
+   
        if($days <= $custom_format_new){
           return '<span class="marker">new</span>';
        }
@@ -83,11 +83,11 @@ class views_has_new_handler_field extends views_handler_field {
       $diff = abs($node_now - $now);
 
       $days = floor($diff / (60*60*24));
-
+    if ($custom_format_update != 0) {
        if($days <= $custom_format_update){
           return '<span class="marker">update</span>';
        }
-
+     }
     }
   }
 }
