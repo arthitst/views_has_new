@@ -75,7 +75,7 @@ class views_has_new_handler_field extends views_handler_field {
       $days = floor($diff / (60*60*24));
    
        if($days <= $custom_format_new){
-          return '<span class="marker">new</span>';
+          return '<span class="marker new">new</span>';
        }
     }elseif($node->created != $node->changed){
       $node_now = $node->changed;
@@ -85,7 +85,7 @@ class views_has_new_handler_field extends views_handler_field {
       $days = floor($diff / (60*60*24));
     if ($custom_format_update != 0) {
        if($days <= $custom_format_update){
-          return '<span class="marker">update</span>';
+          return '<span class="marker update">update</span>';
        }
      }
     }
